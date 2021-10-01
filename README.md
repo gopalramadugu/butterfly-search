@@ -1,4 +1,4 @@
-# Saved Searches Flask Resty API
+# Butterfly Search API
 
 # Introduction
 
@@ -261,11 +261,3 @@ Updating a saved search can be used to set a custom title for a feed.
 
 - `200 OK` will be returned if the request was successful
 - `403 Forbidden` will be returned if the user does not own this saved search
-
-### Swagger API Documentation
-
-------------- TO DO ---------
-
-### POST-Man API requests
-
------------------- TO DO --------
