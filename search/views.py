@@ -107,7 +107,7 @@ class SearchListView(SearchViewBase):
                     filteredsearchs.append(search)
 
             return self.make_items_response(filteredsearchs)
-        except:
+        except Exception as e:
             app.logger.exception("Exception on get search: ")
 
     def post(self):
