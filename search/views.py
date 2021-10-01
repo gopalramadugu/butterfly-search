@@ -158,8 +158,8 @@ class SearchListView(SearchViewBase):
                             "message": "Search could not be created. It already exists"
                         }, 200
             return self.create()
-        except:
-            app.logger.exception("Exception on creating search: ")
+        except Exception as e:
+            app.logger.exception("Exception on creating search: ", e.message)
 
 
 # ---------------------------------------------------------------------
@@ -171,8 +171,8 @@ class SearchDeleteView(SearchDeleteViewBase):
     def delete(self, id):
         try:
             return self.destroy(id)
-        except:
-            app.logger.exception("Exception on deleting search: ")
+        except Exception as e:
+            app.logger.exception("Exception on deleting search: ", e.message)
 
 
 # ---------------------------------------------------------------------
@@ -208,5 +208,5 @@ class SearchUpdateView(SearchUpdateBase):
                         }, 200
 
             return self.update(id, partial=True)
-        except:
-            app.logger.exception("Exception on updating search: ")
+        except Exception as e:
+            app.logger.exception("Exception on updating search: ", e.message)
