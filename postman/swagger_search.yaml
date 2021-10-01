@@ -1,0 +1,153 @@
+openapi: 3.0.0
+servers:
+  - url: http://127.0.0.1:5000
+    description: ''
+    variables: {}
+info:
+  version: 579a725e-76df-4ef5-a241-dac2e4f47846
+  title: Butterfly
+  description: ''
+  termsOfService: ''
+  contact: {}
+  license:
+    name: ''
+paths:
+  /api/search/:
+    post:
+      summary: SaveSearch
+      operationId: SaveSearch
+      parameters:
+        - $ref: '#/components/parameters/appuserid'
+        - $ref: '#/components/parameters/searchtype'
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                data:
+                  appuserid: 4
+                  name: Xyz1
+                  searchtype: saved
+                  searchcriteria:
+                    reviewer: G Smith
+                    patientid: '123456'
+            example: |-
+              {
+                  "data": {
+                      "appuserid": 4,
+                      "name": "Xyz1",
+                      "searchtype": "saved",
+                      "searchcriteria": {
+                          "reviewer": "G Smith",
+                          "patientid": "123456"
+                      }
+                  }
+              }
+    get:
+      summary: SearchResults
+      operationId: SearchResults
+      parameters:
+        - name: appuserid
+          in: query
+          required: true
+          style: form
+          schema:
+            type: number
+        - $ref: '#/components/parameters/limit'
+        - name: searchtype
+          in: query
+          required: true
+          style: form
+          schema:
+            type: string
+            example: saved
+      responses:
+        '200':
+          description: ''
+          headers: {}
+  /api/search/update/9:
+    patch:
+      summary: RenameSearch
+      operationId: RenameSearch
+      parameters:
+        - name: appuserid
+          in: query
+          required: true
+          style: form
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example:
+                data:
+                  id: 9
+                  appuserid: 4
+                  name: Xyz2
+            example: |2-
+                  {
+                  "data": 
+                      {
+                      "id": 9, 
+                      "appuserid": 4,
+                      "name": "Xyz2"
+                      }
+                  
+              } 
+  /api/search/8:
+    delete:
+      summary: DeleteSearch
+      operationId: DeleteSearch
+      parameters:
+        - name: appuserid
+          in: query
+          required: true
+          style: form
+          schema:
+            type: number
+      responses:
+        '200':
+          description: ''
+          headers: {}
+components:
+  parameters:
+    appuserid:
+      name: appuserid
+      in: query
+      required: true
+      style: form
+      schema:
+        type: number
+    searchtype:
+      name: searchtype
+      in: query
+      required: true
+      style: form
+      schema:
+        type: string
+        example: saved
+    limit:
+      name: limit
+      in: query
+      required: true
+      style: form
+      schema:
+        type: number
+security: []
+tags: []
+externalDocs:
+  url: ''
+  description: ''

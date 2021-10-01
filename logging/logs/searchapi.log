@@ -1,0 +1,8 @@
+2021-09-30 20:44:28,714 werkzeug - INFO: * Detected change in '/Users/autoniq/Projects/demo-repository/search/views.py', reloading
+2021-09-30 20:48:07,660 werkzeug - INFO: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2021-09-30 20:48:07,664 werkzeug - INFO: * Restarting with stat
+2021-09-30 20:48:13,010 werkzeug - INFO:127.0.0.1 - - [30/Sep/2021 20:48:13] "POST /api/search/?appuserid=3&searchtype=saved HTTP/1.1" 200 -
+2021-09-30 20:49:17,567 werkzeug - INFO:127.0.0.1 - - [30/Sep/2021 20:49:17] "[35m[1mPOST /api/search/?appuserid=3&searchtype=saved HTTP/1.1[0m" 201 -
+2021-09-30 20:51:42,270 werkzeug - INFO: * Detected change in '/Users/autoniq/Projects/demo-repository/search/views.py', reloading
+2021-09-30 20:51:45,229 werkzeug - INFO: * Restarting with stat
+2021-09-30 20:58:06,703 werkzeug - INFO: * Detected change in '/Users/autoniq/Projects/demo-repository/search/views.py', reloading

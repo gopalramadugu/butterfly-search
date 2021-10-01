@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+  postgres:
+   image: postgres 
+   logging: 
+    options: 
+     max-file: "3"
+     max-size: 10m
+   ports: 
+    - 5432:5432
+   volumes: 
+    - pgdata:/var/lib/postgresql/data
+    - ./db_scripts/SchemaScript.sql:/docker-entrypoint-initdb.d/SchemaScript.sql
+    - ./db_scripts/SeedData.sql:/docker-entrypoint-initdb.d/SeedData.sql
+   environment: 
+    POSTGRES_DB: butterfly
+    POSTGRES_PASSWORD: Datafactz
+    POSTGRES_USER: postgres
+volumes:
+ pgdata:
+  driver: local
