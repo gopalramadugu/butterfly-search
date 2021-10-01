@@ -108,7 +108,7 @@ class SearchListView(SearchViewBase):
 
             return self.make_items_response(filteredsearchs)
         except Exception as e:
-            app.logger.exception("Exception on get search: ")
+            app.logger.exception("Exception on get search: ", e.message)
 
     def post(self):
         try:
