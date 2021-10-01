@@ -117,29 +117,9 @@ class SearchListView(SearchViewBase):
             searchtype = querydata.get("searchtype")
             appuserid = querydata.get("appuserid")
 
-            if appuserid != data["appuserid"]:
-                return {"message": "appuserid in query and body dont match"}, 200
-
-            if searchtype != data["searchtype"]:
-                return {"message": "Searchtype in query and body dont match"}, 200
-
-            if searchtype == self.SEARCH_TYPE_SAVED and (
-                self.SEARCH_NAME_KEY not in data or not data["name"]
-            ):
-                return {"message": "Please specify a name for a saved search"}, 200
-
-            if (
-                searchtype == self.SEARCH_TYPE_RECENT
-                or searchtype == self.SEARCH_TYPE_SAVED
-            ):
-                self.filtering = Filtering(
-                    appuserid=ColumnFilter(operator.eq, required=True),
-                    searchtype=ColumnFilter(operator.eq, required=False),
-                )
-            else:
-                return {
-                    "message": "Invalid searchtype. Valid types are recent, saved"
-                }, 200
+            message = self.validatepostrequest(appuserid, data, searchtype)
+            if message:
+                return message
 
             searches = self.get_list()
 
@@ -160,6 +140,29 @@ class SearchListView(SearchViewBase):
             return self.create()
         except Exception as e:
             app.logger.exception("Exception on creating search: ", e.message)
+
+    def validatepostrequest(self, appuserid, data, searchtype):
+        if appuserid != data["appuserid"]:
+            return {"message": "appuserid in query and body dont match"}, 200
+
+        if searchtype != data["searchtype"]:
+            return {"message": "Searchtype in query and body dont match"}, 200
+
+        if searchtype == self.SEARCH_TYPE_SAVED and (
+            self.SEARCH_NAME_KEY not in data or not data["name"]
+        ):
+            return {"message": "Please specify a name for a saved search"}, 200
+
+        if (
+            searchtype == self.SEARCH_TYPE_RECENT
+            or searchtype == self.SEARCH_TYPE_SAVED
+        ):
+            self.filtering = Filtering(
+                appuserid=ColumnFilter(operator.eq, required=True),
+                searchtype=ColumnFilter(operator.eq, required=False),
+            )
+        else:
+            return {"message": "Invalid searchtype. Valid types are recent, saved"}, 200
 
 
 # ---------------------------------------------------------------------
