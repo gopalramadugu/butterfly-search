@@ -12,7 +12,6 @@ csrf = CSRFProtect()
 csrf.init_app(app)
 app.config["SECRET_KEY"] = SECRET_KEY
 fileConfig("logging/logging.ini")
-logging.basicConfig()
 logger = logging.getLogger(__name__)
 
 from . import routes  # noqa: F401 isort:skip
